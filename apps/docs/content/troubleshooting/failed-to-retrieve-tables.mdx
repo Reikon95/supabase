@@ -25,22 +25,22 @@ Trying to connect to the project via the API will often result in a 522 or 525 r
 
 Out of memory errors usually happen because of a sudden spike in database activity, or a sustained high level of activity, either due to a high volume of queries or very complex queries (or a combination of both).
 
-Note that nano, micro, small and medium compute instances have 30 minutes of burst capacity on a daily basis so may be able to handle sustained high activity for a short period of time,
+Note that Nano, Micro, Small and Medium compute instances have 30 minutes of burst capacity on a daily basis so may be able to handle sustained high activity for a short period of time,
 but not sudden spikes.
 
-## Next Steps and Preventative Measures
+## Next steps and preventative measures
 
 First:
 
 - Immediately stop any ongoing queries to the database.
-- Restart the instance from the project settings in the dashboard once you are confident there are no large ongoing queries (if there are, it may crash again). You can do that on [this page](https://supabase.com/dashboard/project/_/settings/general). If it crashes again, re-review the logs to understand what may be casuing the issue.
+- Restart the instance from the project settings in the dashboard once you are confident there are no large ongoing queries (if there are, it may crash again). You can do that on [this page](/dashboard/project/_/settings/general). If it crashes again, re-review the logs to understand what may be causing the issue.
 
 Once you are confident there will not be a crash loop, you can review the following steps:
 
-- If this was intentional activity (often it's a case of uploading, or reading, a lot of test data), and it needs to be done again, batch requests into smaller chunks and reduce concurrency, and implementation pagination for select queries. Check out our [query optimisation docs](https://supabase.com/docs/guides/database/query-optimization) for more information around general ideas here.
+- If this was intentional activity (often it's a case of uploading, or reading, a lot of test data), and it needs to be done again, batch requests into smaller chunks and reduce concurrency, and implementation pagination for select queries. Check out our [query optimisation docs](/docs/guides/database/query-optimization) for more information around general ideas here.
 - If it was unintentional, double check for any recursive calls in your application code, edge functions or database functions.
-- Consider your table and your query structure - if your tables are very "wide" (lots of columns) or have complicated data types within them (jsonb, base64 in particular), it may be worth revisiting your architecture.
-- Continue to monitor your project's [query performance tab](https://supabase.com/dashboard/project/_/observability/query-performance) and [enable index advisor](https://supabase.com/docs/guides/database/extensions/index_advisor) if you haven't already - especially if there are a lot of select queries.
-- If after monitoring your changes you still do not notice improvements, consider upgrading compute if you think this level of activity is going to be regular. It will give you more memory overhead to process tasks like this. You can view all compute offerings [here](https://supabase.com/dashboard/project/_/settings/compute-and-disk).
+- Consider your table and your query structure - if your tables are very "wide" (lots of columns) or have complicated data types within them, it may be worth revisiting your architecture.
+- Continue to monitor your project's [query performance tab](/dashboard/project/_/observability/query-performance) and [enable index advisor](/docs/guides/database/extensions/index_advisor) if you haven't already - especially if there are a lot of select queries.
+- If after monitoring your changes you still do not notice improvements, consider upgrading compute if you think this level of activity is going to be regular. It will give you more memory overhead to process tasks like this. You can view all compute offerings [here](/dashboard/project/_/settings/compute-and-disk).
 
-If you want to effectively monitor your project's performance minute by minute, you can use the [Metrics API](https://supabase.com/docs/guides/telemetry/metrics).
+If you want to effectively monitor your project's performance minute by minute, you can use the [Metrics API](/docs/guides/telemetry/metrics).
