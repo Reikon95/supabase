@@ -8,7 +8,7 @@ keywords = ["failed to retrieve tables", "connection timeout", "522", "525"]
 message = "Failed to retrieve tables"
 ---
 
-First, you can verify if this is isolated to your project of if it's a platform issue by viewing our [status page](https://status.supabase.com/).
+First, you can verify if this is isolated to your project or if it's a platform issue by viewing our [status page](https://status.supabase.com/).
 
 If there are no issues, then it's likely a problem with your project.
 
@@ -35,7 +35,7 @@ First:
 - Immediately stop any ongoing queries to the database.
 - Restart the instance from the project settings in the dashboard once you are confident there are no large ongoing queries (if there are, it may crash again). You can do that on [this page](https://supabase.com/dashboard/project/_/settings/general). If it crashes again, re-review the logs to understand what may be casuing the issue.
 
-After that:
+Once you are confident there will not be a crash loop, you can review the following steps:
 
 - If this was intentional activity (often it's a case of uploading, or reading, a lot of test data), and it needs to be done again, batch requests into smaller chunks and reduce concurrency, and implementation pagination for select queries. Check out our [query optimisation docs](https://supabase.com/docs/guides/database/query-optimization) for more information around general ideas here.
 - If it was unintentional, double check for any recursive calls in your application code, edge functions or database functions.
